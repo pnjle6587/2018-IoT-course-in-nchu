@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PokerFace</title>
+    <style type="text/css">
+        li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        ul {
+            margin: 0;
+        }
+
+        img {
+            width:10%;
+            height:10%;
+        }
+
+    </style>
+    <script>
+        var pokeImage1;
+        var pokeImage2;
+        var pokeImage3;
+        var pokeImage4;
+        var pokeImage5;
+        var maxShape = 5;
+        var maxValue = 14;
+        var alreadyPicked = new Array(maxShape);
+
+        function start(){
+            var button = document.getElementById("getCard");
+            button.addEventListener("click", pickCards, false);
+            pokeImage1 = document.getElementById("poke1");
+            pokeImage2 = document.getElementById("poke2");
+            pokeImage3 = document.getElementById("poke3");
+            pokeImage4 = document.getElementById("poke4");
+            pokeImage5 = document.getElementById("poke5");
+
+            for (var i = 0; i < maxShape; i++) {
+                alreadyPicked[i] = new Array(maxValue);
+            }
+
+            for (var i = 0; i < maxShape; i++) {
+                for (var j = 0; j < maxValue; j++) {
+                    alreadyPicked[i][j] = 1;
+                }
+            }
+        }
+
+       function pickCards() {
+           setImage(pokeImage1);
+           setImage(pokeImage2);
+           setImage(pokeImage3);
+           setImage(pokeImage4);
+           setImage(pokeImage5);
+        }
+
+       function setImage(pokeImage, alreadyPicked){
+           var getShape = Math.floor(Math.random() * 4);
+           var getValue = Math.floor(1 + Math.random() * 13);
+           var pokerFold;
+
+           switch (getShape) {
+               case 0:
+                   pokerFold = "pokerCard(reName)/spades/";
+                   break;
+               case 1:
+                   pokerFold = "pokerCard(reName)/hearts/";
+                   break;
+               case 2:
+                   pokerFold = "pokerCard(reName)/dimonds/";
+                   break;
+               case 3:
+                   pokerFold = "pokerCard(reName)/clubs/";
+                   break;
+           }
+
+            pokeImage.setAttribute("src", pokerFold + getValue + ".png");
+            pokeImage.setAttribute("alt", "pokerCard(reName)/spades/10.png");
+            
+        }
+
+       window.addEventListener("load", start, false);
+
+    </script>
+</head>
+<body>
+    <form action="#">
+        <input id="getCard" type="button" value="Get a Card">
+    </form>
+    <ol>
+        <li><img id="poke1" src="pokerCard(reName)/blank.png" alt="initail image"></li>
+        <li><img id="poke2" src="pokerCard(reName)/blank.png" alt="initail image"></li>
+        <li><img id="poke3" src="pokerCard(reName)/blank.png" alt="initail image"></li>
+        <li><img id="poke4" src="pokerCard(reName)/blank.png" alt="initail image"></li>
+        <li><img id="poke5" src="pokerCard(reName)/blank.png" alt="initail image"></li>
+    </ol>
+</body>
+</html>
